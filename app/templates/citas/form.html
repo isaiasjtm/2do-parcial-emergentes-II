@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if cita else 'Nueva' }} cita · MediControl{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-6">
+<div class="card shadow-sm"><div class="card-body">
+    <h2 class="mb-3">{{ 'Editar cita' if cita else 'Nueva cita' }}</h2>
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Fecha</label>
+                <input type="date" name="fecha" class="form-control" required value="{{ cita.fecha.strftime('%Y-%m-%d') if cita else '' }}">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Hora</label>
+                <input type="time" name="hora" class="form-control" required value="{{ cita.hora.strftime('%H:%M') if cita else '' }}">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Médico</label>
+            <select name="medico_id" class="form-select" required>
+                <option value="">-- Seleccione --</option>
+                {% for m in medicos %}
+                <option value="{{ m.id }}" {{ 'selected' if cita and cita.medico_id == m.id }}>{{ m.nombre }} ({{ m.especialidad }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Paciente</label>
+            <select name="paciente_id" class="form-select" required>
+                <option value="">-- Seleccione --</option>
+                {% for p in pacientes %}
+                <option value="{{ p.id }}" {{ 'selected' if cita and cita.paciente_id == p.id }}>{{ p.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-danger">Guardar</button>
+        <a href="{{ url_for('citas.listar') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div></div></div></div>
+{% endblock %}

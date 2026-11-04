@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Inicio · MediControl{% endblock %}
+{% block content %}
+<div class="p-4 mb-4 bg-white rounded shadow-sm">
+    <h1 class="display-6">Sistema de gestión de citas médicas</h1>
+    <p class="text-muted mb-0">Administra médicos, pacientes y citas desde un solo lugar.</p>
+</div>
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm"><div class="card-body">
+            <h2 class="text-primary">{{ total_medicos }}</h2><p>Médicos</p>
+            <a href="{{ url_for('medicos.listar') }}" class="btn btn-outline-primary btn-sm">Ver médicos</a>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm"><div class="card-body">
+            <h2 class="text-success">{{ total_pacientes }}</h2><p>Pacientes</p>
+            <a href="{{ url_for('pacientes.listar') }}" class="btn btn-outline-success btn-sm">Ver pacientes</a>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm"><div class="card-body">
+            <h2 class="text-danger">{{ total_citas }}</h2><p>Citas</p>
+            <a href="{{ url_for('citas.listar') }}" class="btn btn-outline-danger btn-sm">Ver citas</a>
+        </div></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if paciente else 'Nuevo' }} paciente · MediControl{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-6">
+<div class="card shadow-sm"><div class="card-body">
+    <h2 class="mb-3">{{ 'Editar paciente' if paciente else 'Nuevo paciente' }}</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required value="{{ paciente.nombre if paciente else '' }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Teléfono</label>
+            <input type="text" name="telefono" class="form-control" required value="{{ paciente.telefono if paciente else '' }}">
+        </div>
+        <button class="btn btn-success">Guardar</button>
+        <a href="{{ url_for('pacientes.listar') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div></div></div></div>
+{% endblock %}

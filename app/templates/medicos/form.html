@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if medico else 'Nuevo' }} médico · MediControl{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-6">
+<div class="card shadow-sm"><div class="card-body">
+    <h2 class="mb-3">{{ 'Editar médico' if medico else 'Nuevo médico' }}</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" required value="{{ medico.nombre if medico else '' }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Especialidad</label>
+            <input type="text" name="especialidad" class="form-control" required value="{{ medico.especialidad if medico else '' }}">
+        </div>
+        <button class="btn btn-primary">Guardar</button>
+        <a href="{{ url_for('medicos.listar') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div></div></div></div>
+{% endblock %}
