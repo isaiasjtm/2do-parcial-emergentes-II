@@ -4,6 +4,7 @@ from datetime import date, time, timedelta
 from app import create_app
 from app.extensions import db
 from app.models import Medico, Paciente, Cita
+#isaias: esto carga datos a  la base de datos
 
 app = create_app()
 
