@@ -7,8 +7,6 @@ class Medico(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     especialidad = db.Column(db.String(100), nullable=False)
-
-    # Un médico puede tener muchas citas
     citas = db.relationship("Cita", back_populates="medico", cascade="all, delete-orphan")
 
     def __repr__(self):
@@ -21,8 +19,6 @@ class Paciente(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(20), nullable=False)
-
-    # Un paciente puede tener muchas citas
     citas = db.relationship("Cita", back_populates="paciente", cascade="all, delete-orphan")
 
     def __repr__(self):
@@ -37,8 +33,6 @@ class Cita(db.Model):
     hora = db.Column(db.Time, nullable=False)
     medico_id = db.Column(db.Integer, db.ForeignKey("medicos.id"), nullable=False)
     paciente_id = db.Column(db.Integer, db.ForeignKey("pacientes.id"), nullable=False)
-
-    # Cada cita pertenece a un médico y a un paciente
     medico = db.relationship("Medico", back_populates="citas")
     paciente = db.relationship("Paciente", back_populates="citas")
 
